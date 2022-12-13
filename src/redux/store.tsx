@@ -21,6 +21,24 @@ export type ProfilePageType = {
     newPostText: string
     newText: string
 }
+export type LocationType = {
+    city: string
+    country: string
+}
+export type UserType={
+    id: number
+    photoUrl: any
+    photos: any
+    followed: boolean
+    fullName: string
+    status: string
+    location:  LocationType
+ }
+export type UsersPageType = {
+    users: UserType[]
+
+}
+
 export type DialogsPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
@@ -31,17 +49,18 @@ export type AppStateType = {
     dialogsPage: DialogsPageType
     sidebar: any
 }
-// export type newPost = {
-//     id: number
-//     message: string
-//     likesCount: number
-// }
-// export type postMessage = {
-//     newPost: newPost
-// }
+export type newPost = {
+    id: number
+    message: string
+    likesCount: number
+}
+export type postMessage = {
+    newPost: newPost
+}
 export type AddPostActionType = {
     type: 'ADD-POST'
-    newPostText: string
+
+
 }
 export type ChangeNewTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
@@ -52,8 +71,8 @@ export type UpdateNewMessageBody = {
     body: string
 }
 export type SendMessageBody = {
-    type: 'SEND-MESSAGE'
-    newMessageBody: string
+    type: any
+
 }
 export type ActionTypes = ActionTypesType|ActionTypesBoy
 export type ActionTypesType = AddPostActionType|ChangeNewTextActionType
@@ -86,7 +105,7 @@ export const store: StoreType = {
                 {id: 5, message: 'Yo'},
                 {id: 6, message: 'Yo'}
             ],
-            newMessageBody: ''
+            newMessageBody: ""
         },
         profilePage: {
             posts: [
@@ -114,7 +133,6 @@ export const store: StoreType = {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this.rerenderEntireTree();
-
 
     }
 }
