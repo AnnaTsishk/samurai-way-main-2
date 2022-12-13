@@ -115,7 +115,6 @@ export const store: StoreType = {
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this.rerenderEntireTree();
 
-
     }
 }
 

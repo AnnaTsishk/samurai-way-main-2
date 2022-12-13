@@ -19,6 +19,7 @@ const profileReducer = (state = initState, action: ActionTypes) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
+                // id: 5,
                 id: new Date().getDate(),
                 message: state.newPostText,
                 likesCount: 100
@@ -39,6 +40,7 @@ export const addPostActionCreator = (newPostText: string): AddPostActionType => 
         newPostText: newPostText
     } as const
 }
+
 export const updateNewPostTextActionCreator = (text: string): ChangeNewTextActionType => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
