@@ -5,6 +5,7 @@ import {PostsType} from "../../../redux/store";
 import {ReduxStoreType} from "../../../redux/redux-store";
 
 
+<<<<<<< HEAD
 type MyPostsPropsType = {
     posts: PostsType[]
     newPostText: string
@@ -12,6 +13,14 @@ type MyPostsPropsType = {
     addPost: () => void
     updateNewPostText: (text: string) => void
 
+=======
+export type MyPostsPropsType = {
+    posts: PostsType[]
+    newPostText: string
+    store: ReduxStoreType
+    addPost: () => void
+    updateNewPostText: (text: string) => void
+>>>>>>> origin/main
 
 }
 const MyPosts = (props: MyPostsPropsType) => {
