@@ -1,22 +1,26 @@
 import React from 'react';
+import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPosts.Container";
-<<<<<<< HEAD
+import {PostsType} from "../redux/state";
 
 
 
-=======
-import {ReduxStoreType} from "../../redux/redux-store";
+type ProfilePropsType = {
+    posts: PostsType[]
+    addPost: () => void
+    newPostText: string
+    updateNewPostText: (newText: string)=>void
+}
 
-
->>>>>>> origin/main
-const Profile = () => {
-    return (
-        <div>
-            <ProfileInfo/>
-            <MyPostsContainer/>
-        </div>
-    )
+const Profile = (props: ProfilePropsType)=> {
+    return (<div>
+        <ProfileInfo />
+        <MyPosts posts={props.posts}
+                 newPostText={props.newPostText}
+                 addPost={props.addPost}
+                 updateNewPostText={props.updateNewPostText}
+        />
+        </div>)
 }
 
 

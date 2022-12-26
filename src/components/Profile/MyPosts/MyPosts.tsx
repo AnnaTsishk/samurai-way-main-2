@@ -1,35 +1,24 @@
 import React from 'react';
 import cl from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {PostsType} from "../../../redux/store";
-import {ReduxStoreType} from "../../../redux/redux-store";
+import {PostsType} from "../../redux/state";
 
 
-<<<<<<< HEAD
 type MyPostsPropsType = {
     posts: PostsType[]
-    newPostText: string
-
     addPost: () => void
-    updateNewPostText: (text: string) => void
-
-=======
-export type MyPostsPropsType = {
-    posts: PostsType[]
     newPostText: string
-    store: ReduxStoreType
-    addPost: () => void
-    updateNewPostText: (text: string) => void
->>>>>>> origin/main
-
+    updateNewPostText: (newText: string) => void
 }
+
 const MyPosts = (props: MyPostsPropsType) => {
     let postsElements = props.posts
         .map(post => <Post message={post.message} likesCount={post.likesCount} id={post.id}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>()
-    let onAddPost=()=>{
-        props.addPost()
-    }
+
+    let addPost = () => {
+        props.addPost();
+      }
 
     let onPostChange = () => {
         if (newPostElement.current) {
@@ -38,16 +27,17 @@ const MyPosts = (props: MyPostsPropsType) => {
         }
     }
 
-    return (<div>
-             <div className={cl.postsBlock}>
+    return (
+        <div>
+            <div className={cl.postsBlock}>
                 <h3>My posts</h3>
-             </div>
-             <div>
-                 <textarea onChange={onPostChange} ref={newPostElement}
+            </div>
+            <div>
+                <textarea onChange={onPostChange} ref={newPostElement}
                           value={props.newPostText}/>
             </div>
             <div>
-                <button onClick={onAddPost}>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
             <div className={cl.posts}>{postsElements}</div>
         </div>)
