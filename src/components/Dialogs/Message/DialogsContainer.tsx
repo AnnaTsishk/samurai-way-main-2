@@ -1,10 +1,10 @@
-<<<<<<< HEAD
 import React from 'react';
 import Dialogs from "../Dialogs";
 import {sendMessageCreator, updateNewMassageBodyCreator} from "../../../redux/dialogs-reduser";
-import {connect} from "react-redux";
-import {ActionTypesBoy, ActionTypesType, DialogsPageType} from "../../../redux/store";
-import {AppStateType} from "../../../redux/redux-store";
+
+import {ActionTypesBoy, ActionTypesType, AppStateType, DialogsPageType} from "../../../redux/store";
+import {ReduxStoreType} from "../../../redux/redux-store";
+
 
 type MapStateToPropsType = {
     dialogsPage: DialogsPageType
@@ -30,13 +30,7 @@ let mapDispatchToProps = (dispatch:(action: ActionTypesType|ActionTypesBoy)=>voi
         }
     }
 }
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs);
-=======
-import React, {ChangeEvent} from 'react';
-import Dialogs from "../Dialogs";
-import {ReduxStoreType} from "../../../redux/redux-store";
-import {sendMessageCreator, updateNewMassageBodyCreator} from "../../../redux/dialogs-reduser";
-import StoreContext from "../../../StoreContext"
+
 
 
 
@@ -58,6 +52,5 @@ const DialogsContainer = () => {
         }}
     </StoreContext.Consumer>
 }
->>>>>>> origin/main
 
 export default DialogsContainer;

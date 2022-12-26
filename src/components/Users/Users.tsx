@@ -3,7 +3,6 @@ import cl from "./Users.module.css"
 import {UserType} from "../../redux/store";
 import axios from "axios";
 import userPhoto from '../../assets/images/user.png';
-import {inspect} from "util";
 
 
 
@@ -19,8 +18,7 @@ class Users extends React.Component<any, UsersProps> {
                 this.props.setUsers(response.data.items)
             })
     }
-        render()
-            {
+        render(){
                 return <div>
                     <div>
                         <span>1</span>
