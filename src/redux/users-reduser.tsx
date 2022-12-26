@@ -4,7 +4,9 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
-const initState: UsersPageType = {users: []}
+const initState: UsersPageType = {
+    users: []
+}
 
 
 const usersReducer = (state = initState, action: any) => {
