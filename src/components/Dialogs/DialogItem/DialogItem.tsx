@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from './../Dialogs.module.css'
 import {NavLink} from "react-router-dom";
-
+import user3 from "../../../assets/images/user3.png";
 
 type DialogItemPropsType={
     id: number
@@ -11,7 +11,7 @@ type DialogItemPropsType={
 const DialogItem = (props:DialogItemPropsType) => {
     let path = "/dialogs/" + props.id;
     return (<div className={cl.dialog + ' ' + cl.active}>
-            <img src='https://kartinkin.net/uploads/posts/2022-03/1646130613_1-kartinkin-net-p-kartinki-o-smisle-zhizni-1.jpg'/>
+            <img src={user3}/>
             <NavLink to={path}>{props.name}</NavLink>
         </div>
     )

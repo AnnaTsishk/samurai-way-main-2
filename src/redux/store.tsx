@@ -20,6 +20,7 @@ export type ProfilePageType = {
     posts: PostsType[]
     newPostText: string
     newText: string
+    profile: any
 }
 export type LocationType = {
     city: string
@@ -33,12 +34,15 @@ export type UserType={
     fullName: string
     status: string
     location:  LocationType
+    small: any
+    large: any
  }
 export type UsersPageType = {
     users: UserType[]
     pageSize: number
     totalUsersCount: number
     currenPage: number
+    isFetching:boolean
 
 }
 
@@ -62,8 +66,6 @@ export type postMessage = {
 }
 export type AddPostActionType = {
     type: 'ADD-POST'
-
-
 }
 export type ChangeNewTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
@@ -75,8 +77,8 @@ export type UpdateNewMessageBody = {
 }
 export type SendMessageBody = {
     type: any
-
 }
+
 export type ActionTypes = ActionTypesType|ActionTypesBoy
 export type ActionTypesType = AddPostActionType|ChangeNewTextActionType
 export type ActionTypesBoy= UpdateNewMessageBody|SendMessageBody
@@ -118,7 +120,8 @@ export const store: StoreType = {
                 {id: 4, message: "Yo!", likesCount: 90}
             ],
             newPostText: "SAD",
-            newText: ''
+            newText: '',
+            profile: null
         },
         sidebar: {}
     },

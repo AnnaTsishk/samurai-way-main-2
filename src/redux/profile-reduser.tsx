@@ -9,11 +9,13 @@ const initState: ProfilePageType = {
         {id: 4, message: "Yo!", likesCount: 90}
     ],
     newPostText: "SAD",
-    newText: ''
+    newText: '',
+    profile: null
 }
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 const profileReducer = (state = initState, action: any) => {
     switch (action.type) {
@@ -34,21 +36,16 @@ const profileReducer = (state = initState, action: any) => {
             let stateCopy = {...state};
             stateCopy.newPostText = action.newText;
             return stateCopy;
+        case SET_USER_PROFILE:{
+            return {...state, profile: action.profile}
+        }
         default:
             return state;
     }
 }
-export const addPostActionCreator = (): AddPostActionType => {
-    return {
-        type: "ADD-POST"
+export const addPostActionCreator = () => ({type: "ADD-POST"})
+export const setUserProfile = (profile:any) => ({type: "SET_USER_PROFILE", profile})
+export const updateNewPostTextActionCreator = (text: string): ChangeNewTextActionType =>
+    ({type: "UPDATE-NEW-POST-TEXT", newText: text})
 
-    } as const
-}
-
-export const updateNewPostTextActionCreator = (text: string): ChangeNewTextActionType => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText: text
-    } as const
-}
 export default profileReducer;

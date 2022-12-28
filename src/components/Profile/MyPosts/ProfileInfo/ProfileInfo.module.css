@@ -1,5 +1,11 @@
 cl.descriptionBlock {
     padding: 10px;
+
+   }
+
+.ava img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    padding: 5px;
 }
-
-

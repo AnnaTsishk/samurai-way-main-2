@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './Post.module.css';
-import Profile from "../../Profile";
+import user2 from "../../../../assets/images/user2.png";
 
 type PostPropsType = {
     message: string
@@ -10,7 +10,7 @@ type PostPropsType = {
 const Post = (props:PostPropsType)=> {
     return (
        <div className={cl.item}>
-           <img src='https://kartinkin.net/uploads/posts/2022-03/1646130613_1-kartinkin-net-p-kartinki-o-smisle-zhizni-1.jpg'/>
+           <img src={user2}/>
        <div>
            {props.message}
        </div>
