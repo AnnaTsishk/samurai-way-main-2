@@ -5,7 +5,13 @@
 }
 .header img{
     width:45px;
-
     padding: 9px;
     border-radius: 50%;
+}
+.loginBlock{
+    float: right;
+    padding: 12px;
+}
+.loginBlock a {
+    color: white;
 }

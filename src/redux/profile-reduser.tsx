@@ -1,4 +1,4 @@
-import {AddPostActionType, ChangeNewTextActionType, ProfilePageType} from "./store";
+import {ChangeNewTextActionType, ProfilePageType} from "./store";
 
 
 const initState: ProfilePageType = {
