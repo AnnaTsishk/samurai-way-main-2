@@ -36,6 +36,7 @@ export type UserType={
     location:  LocationType
     small: any
     large: any
+    API_KEY: any
  }
 export type UsersPageType = {
     users: UserType[]
@@ -43,6 +44,8 @@ export type UsersPageType = {
     totalUsersCount: number
     currenPage: number
     isFetching:boolean
+    followingInProgress: number[]
+    // id: number
 
 }
 

@@ -1,9 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {follow, setCurrentPage, setToggleFetching,setTotalUsersCount, setUsers, unfollow} from "../../redux/users-reduser";
-import axios from 'axios';
+import {
+    follow,
+    setCurrentPage,
+    setToggleFetching,
+    setTotalUsersCount,
+    setUsers,
+    toggleFollowingProgress,
+    unfollow
+} from "../../redux/users-reduser";
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
+import {usersAPI} from "../../api/api";
+
 
 
 
@@ -14,33 +23,35 @@ type UsersProps = {
 class UsersComponent extends React.Component<any, UsersProps> {
     componentDidMount() {
         this.props.setToggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currenPage}&count=${this.props.pageSize}`)
-            .then(response => {
+
+        usersAPI.getUsers(this.props.currenPage, this.props.pageSize).then(data => {
                 this.props.setToggleFetching(false);
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount)
             })
     }
     onPageChanged=(pagesNumber:number)=>{
         this.props.setCurrentPage(pagesNumber)
         this.props.setToggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pagesNumber}&count=${this.props.pageSize}`)
-            .then(response => {
+
+        usersAPI.getUsers(pagesNumber, this.props.pageSize).then(data => {
                 this.props.setToggleFetching(false);
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(data.items)
             })
     }
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> :null}
+            {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
-                        pageSize={this.props.pageSize}
-                        currenPage={this.props.currenPage}
-                        onPageChanged={this.onPageChanged}
-                        users={this.props.users}
-                        follow={this.props.follow}
-                        unfollow={this.props.unfollow}
-        />
+                   pageSize={this.props.pageSize}
+                   currenPage={this.props.currenPage}
+                   onPageChanged={this.onPageChanged}
+                   users={this.props.users}
+                   follow={this.props.follow}
+                   unfollow={this.props.unfollow}
+                   toggleFollowingProgress={this.props.toggleFollowingProgress}
+                   followingInProgress={this.props.followingInProgress}
+            />
         </>
     }
 }
@@ -50,37 +61,10 @@ let mapStareToProps=(state:any)=>{
         pageSize:state.usersPage.pageSize,
         totalUsersCount:state.usersPage.totalUsersCount,
         currenPage: state.usersPage. currenPage,
-        isFetching: state.usersPage.isFetching
-
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
-// let mapDispatchToProps = (dispatch: any) => {
-//     return {
-        // follow: (userId: number) => {
-        //     dispatch(followAC(userId))
-        // },
-        // unfollow: (userId: number) => {
-        //     dispatch(unfollowAC(userId))
-        // },
-        // setUsers: (users: any) => {
-        //     dispatch(setUsersAC(users))
-        // },
-        // setCurrentPage: (pagesNumber: number)=>{
-        //     dispatch(setCurrentPageAC(pagesNumber))
-        // },
-        // setTotalUsersCount: (totalCount: number) => {
-        //     dispatch(setTotalUsersCountAC(totalCount))
-        // },
-        // setToggleFetching: (isFetching: any) => {
-        //     dispatch(setToggleFetchingAC(isFetching))
-        // }
-// }}
 export default connect(mapStareToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setToggleFetching
-    }
-) (UsersComponent);
+    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount,
+    setToggleFetching,toggleFollowingProgress}) (UsersComponent);
