@@ -1,4 +1,5 @@
 import {ChangeNewTextActionType, ProfilePageType} from "./store";
+import {usersAPI} from "../api/api";
 
 
 const initState: ProfilePageType = {
@@ -45,6 +46,12 @@ const profileReducer = (state = initState, action: any) => {
 }
 export const addPostActionCreator = () => ({type: "ADD-POST"})
 export const setUserProfile = (profile:any) => ({type: "SET_USER_PROFILE", profile})
+
+export const getUserProfile = (userId: number) =>(dispatch: any)=>{
+    usersAPI.getProfile(userId).then(response=>{
+        dispatch(setUserProfile(response.data));
+    });
+}
 export const updateNewPostTextActionCreator = (text: string): ChangeNewTextActionType =>
     ({type: "UPDATE-NEW-POST-TEXT", newText: text})
 

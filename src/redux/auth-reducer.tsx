@@ -1,26 +1,9 @@
-
+import {authAPI} from "../api/api";
 
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
 
-// export type UserIdPageType = {
-//     userId: number
-//     // id: number
-//     email: string
-//     login: string
-//     isFetching: boolean
-//
-// }
-
-// const initialState:UserIdPageType = {
-//     userId: 2,
-//     // id: 2,
-//     email: 'blabla@bla.bla',
-//     login: 'samurai',
-//     isFetching: true
-//
-// }
 export type UserIdPageType = {
     id: any
     email: any
@@ -46,5 +29,12 @@ const authReducer = (state = initialState, action: any) => {
     }
 }
 export const setAuthUserData =(userId:any, email: any, login: any)=> ({type: SET_USER_DATA,data:{userId,email,login}})
-
+export const detAutUserData=()=>(dispatch:any)=>{
+    authAPI.me().then(response => {
+            if(response.data.resultCode===0){
+                let{id, login, email}= response.data.data;
+                dispatch(setAuthUserData(id, email, login));
+            }
+        })
+}
 export default authReducer;
